@@ -217,7 +217,9 @@ def train_tokenizer(input_path: str,
     vocabulary, idx = init_vocab(special_tokens=special_tokens)
 
     # Pretokenize text and digest pretoken data into dict of {str: [count, tokenized str in list form]}
-    pretoken_data = digest_pretokens(pretokens=pretokenize_text(text=open(input_path).read()))
+    text = open(input_path).read()
+    pretokens = pretokenize_text(text=text)
+    pretoken_data = digest_pretokens(pretokens=pretokens)
 
     # Create mapping of pairs to pretokens they're in
     pair_counts, pairs_to_pretokens = map_pairs_to_pretokens(pretoken_data=pretoken_data)
@@ -261,6 +263,9 @@ def main():
     print('ARGS! fp:', fp, ', vocab size:', vocab_size, ', special tokens:', special_tokens)
 
     vocab, merges = train_tokenizer(input_path=fp, vocab_size=vocab_size, special_tokens=special_tokens)
+
+    print('Max memory usage, in mac=bytes, linux=kilobytes:', resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
+
 
 
 if __name__ == '__main__':

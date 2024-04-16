@@ -152,7 +152,7 @@ def update_tokenization_of_pretoken(pretoken_tokens, merge_pair, merged_token, p
             new_pretoken_tokens.append(token1)
             i += 1
 
-    return new_pretoken_tokens#, pair_counts
+    return new_pretoken_tokens
 
 
 def redo_pair_counts_after_merge(pretoken_data, pretoken, merged_token, pair_counts, pairs_to_pretokens, pretoken_count): 

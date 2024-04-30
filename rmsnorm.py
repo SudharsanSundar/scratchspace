@@ -16,10 +16,5 @@ def RMSNorm_grad_wrt_x(grad_output: torch.Tensor, x: torch.Tensor, g: torch.Tens
     output_grad = add_term - final_mult_term
 
     final_grad = grad_output * output_grad
-
-    print(grad_output.shape, x.shape, g.shape, sum_eps.shape)
-    print(add_term.shape)
-    print(output_grad.shape)
-    print(final_grad.shape)
-
+    
     return final_grad
